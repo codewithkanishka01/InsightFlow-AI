@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Product Feedback Analyzer</h1>
+
+    <p>
+        Paste customer reviews below and let AI analyze them.
+    </p>
+
+    <textarea
+        id="reviews"
+        placeholder="Paste 20-30 customer reviews here..."
+    ></textarea>
+
+    <select id="platform">
+
+        <option>Zomato</option>
+        <option>Swiggy</option>
+        <option>Amazon</option>
+        <option>Flipkart</option>
+        <option>Play Store</option>
+
+    </select>
+
+    <button id="analyzeBtn">
+        Analyze Reviews
+    </button>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>
