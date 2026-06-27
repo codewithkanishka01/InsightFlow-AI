@@ -4,64 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AI Product Feedback Analyzer</title>
-
+    <title>InsightFlow AI | Turn Reviews into Product Insights</title>
+    
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts: Plus Jakarta Sans (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
     <nav class="navbar">
-
-        <h2>AI Product Feedback Analyzer</h2>
-
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i data-lucide="brain-circuit" class="logo-icon"></i>
+                <span>InsightFlow <span class="highlight">AI</span></span>
+            </a>
+            
+            <button id="themeToggle" class="theme-btn">
+                <i data-lucide="moon"></i>
+                <span>Dark Mode</span>
+            </button>
+        </div>
     </nav>
 
-    <section class="hero">
+    <main class="hero-wrapper">
+        <div class="grid-overlay"></div>
+        
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Turn Customer Reviews into <span class="gradient-text">Product Insights</span></h1>
+                <p>
+                    Analyze hundreds of customer reviews using AI. Discover pain points, 
+                    identify themes, and receive feature recommendations instantly.
+                </p>
+            </div>
 
-        <h1>Turn Customer Reviews into Product Insights</h1>
+            <!-- Beautiful Form Card Wrapper -->
+            <div class="card input-card">
+                <div class="input-card-header">
+                    <i data-lucide="message-square" class="card-icon"></i>
+                    <div>
+                        <h3>Paste Reviews</h3>
+                        <p>Input feedback from app stores or custom channels.</p>
+                    </div>
+                </div>
 
-        <p>
-            Analyze hundreds of customer reviews using AI.
-            Discover pain points, identify themes, and receive
-            feature recommendations instantly.
-        </p>
+                <textarea
+                    id="reviewInput"
+                    placeholder="Paste 20-30 customer reviews here... (e.g. '★★★★★ Delivery was quick. ★★☆☆☆ Payment keeps failing. App crashes during checkout.')"
+                    rows="10"
+                ></textarea>
 
-        <button id="startBtn">
-            Analyze Reviews
-        </button>
+                <div class="input-controls">
+                    <div class="dropdown-wrapper">
+                        <i data-lucide="layers" class="dropdown-icon"></i>
+                        <select id="platform">
+                            <option value="Amazon">Amazon</option>
+                            <option value="Flipkart">Flipkart</option>
+                            <option value="Swiggy">Swiggy</option>
+                            <option value="Zomato">Zomato</option>
+                            <option value="Google Play">Google Play</option>
+                            <option value="App Store">App Store</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="dropdown-arrow"></i>
+                    </div>
 
-    </section>
+                    <button id="analyzeBtn">
+                        <i data-lucide="sparkles"></i>
+                        <span>Analyze Reviews</span>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-    <section class="features">
+        <section class="features">
+            <div class="card feature-card">
+                <div class="feature-icon theme-icon">
+                    <i data-lucide="folder-search"></i>
+                </div>
+                <h3>Theme Detection</h3>
+                <p>Automatically groups customer reviews into meaningful, structured categories.</p>
+            </div>
 
-        <div class="card">
-            <h3>Theme Detection</h3>
-            <p>Automatically groups reviews into meaningful categories.</p>
+            <div class="card feature-card">
+                <div class="feature-icon sentiment-icon">
+                    <i data-lucide="smile"></i>
+                </div>
+                <h3>Sentiment Analysis</h3>
+                <p>Measures positive, negative, and neutral feedback trends over time.</p>
+            </div>
+
+            <div class="card feature-card">
+                <div class="feature-icon pain-icon">
+                    <i data-lucide="alert-triangle"></i>
+                </div>
+                <h3>Pain Points</h3>
+                <p>Highlights critical issues affecting user experience and conversions.</p>
+            </div>
+
+            <div class="card feature-card">
+                <div class="feature-icon suggest-icon">
+                    <i data-lucide="lightbulb"></i>
+                </div>
+                <h3>Feature Suggestions</h3>
+                <p>Generates actionable, prioritized product enhancements powered by AI.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-card">
+            <div class="spinner-container">
+                <div class="spinner-glow"></div>
+                <div class="spinner"></div>
+            </div>
+            <h2>Analyzing Reviews...</h2>
+            <p id="loadingText">
+                AI is reading customer reviews...
+            </p>
         </div>
+    </div>
 
-        <div class="card">
-            <h3>Sentiment Analysis</h3>
-            <p>Measures positive, negative and neutral feedback.</p>
-        </div>
-
-        <div class="card">
-            <h3>Pain Points</h3>
-            <p>Highlights the biggest issues affecting users.</p>
-        </div>
-
-        <div class="card">
-            <h3>Feature Suggestions</h3>
-            <p>Generates product improvements using AI.</p>
-        </div>
-
-    </section>
-
-<script src="js/script.js"></script>
-
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
+
 </html>

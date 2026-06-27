@@ -4,46 +4,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Dashboard</title>
-
+    <title>InsightFlow AI | Dashboard</title>
+    
     <link rel="stylesheet" href="css/dashboard.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts: Plus Jakarta Sans (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
-<div class="container">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i data-lucide="brain-circuit" class="logo-icon"></i>
+                <span>InsightFlow <span class="highlight">AI</span></span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i data-lucide="home"></i><span>Home</span></a>
+                <a href="#" class="nav-link active"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a>
+            </div>
+        </div>
+    </nav>
 
-    <h1>AI Product Feedback Analyzer</h1>
+    <div class="dashboard-wrapper">
+        <div class="dashboard-container">
+            
+            <!-- Dashboard Header Section -->
+            <div class="dashboard-header-section">
+                <div class="dashboard-header">
+                    <div>
+                        <h1>AI Product Intelligence Platform</h1>
+                        <p class="dashboard-subtitle">Analyze customer reviews and extract insights using Gemini AI</p>
+                    </div>
+                    
+                    <button id="downloadPDF" class="btn-download">
+                        <i data-lucide="file-text"></i>
+                        <span>Download Report</span>
+                    </button>
+                </div>
 
-    <p>
-        Paste customer reviews below and let AI analyze them.
-    </p>
+                <div class="header-actions">
+                    <button id="themeToggle" class="theme-btn">
+                        <i data-lucide="moon"></i>
+                        <span>Dark Mode</span>
+                    </button>
 
-    <textarea
-        id="reviews"
-        placeholder="Paste 20-30 customer reviews here..."
-    ></textarea>
+                    <div class="dashboard-badge">
+                        <div class="badge-dot"></div>
+                        <span class="badge-text">Gemini AI Connected</span>
+                    </div>
+                </div>
+            </div>
 
-    <select id="platform">
+            <!-- Top Grid: Input Form + Stats Grid -->
+            <div class="top-section">
+                <!-- Input Card -->
+                <div class="card input-card">
+                    <div class="card-header-clean">
+                        <i data-lucide="message-square-plus" class="card-icon text-indigo"></i>
+                        <div>
+                            <h2>Analyze Customer Reviews</h2>
+                            <p>Paste reviews from Amazon, Flipkart, Zomato, Swiggy, App Store, or Custom channels.</p>
+                        </div>
+                    </div>
 
-        <option>Zomato</option>
-        <option>Swiggy</option>
-        <option>Amazon</option>
-        <option>Flipkart</option>
-        <option>Play Store</option>
+                    <textarea
+                        id="reviews"
+                        placeholder="Paste reviews here... (e.g. '★★★★★ Delivery was quick. ★★☆☆☆ Payment keeps failing. App crashes during checkout.')"
+                    ></textarea>
 
-    </select>
+                    <div class="input-controls">
+                        <div class="dropdown-wrapper">
+                            <i data-lucide="layers" class="dropdown-icon"></i>
+                            <select id="platform">
+                                <option disabled selected>Select Platform</option>
+                                <option value="Amazon">Amazon</option>
+                                <option value="Flipkart">Flipkart</option>
+                                <option value="Zomato">Zomato</option>
+                                <option value="Swiggy">Swiggy</option>
+                                <option value="Google Play">Google Play</option>
+                                <option value="App Store">App Store</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="dropdown-arrow"></i>
+                        </div>
 
-    <button id="analyzeBtn">
-        Analyze Reviews
-    </button>
+                        <button id="analyzeBtn" class="btn-primary">
+                            <i data-lucide="sparkles"></i>
+                            <span>Analyze Reviews</span>
+                        </button>
+                    </div>
+                </div>
 
-</div>
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="card stat-card">
+                        <div class="stat-icon-wrapper blue-light">
+                            <i data-lucide="message-square" class="stat-icon text-blue"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Total Reviews</span>
+                            <h2 id="totalReviews" class="stat-value">0</h2>
+                        </div>
+                    </div>
 
-<script src="js/dashboard.js"></script>
+                    <div class="card stat-card">
+                        <div class="stat-icon-wrapper green-light">
+                            <i data-lucide="thumbs-up" class="stat-icon text-green"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Positive Sentiment</span>
+                            <h2 id="positivePercent" class="stat-value">0%</h2>
+                        </div>
+                    </div>
 
+                    <div class="card stat-card">
+                        <div class="stat-icon-wrapper red-light">
+                            <i data-lucide="thumbs-down" class="stat-icon text-red"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Negative Sentiment</span>
+                            <h2 id="negativePercent" class="stat-value">0%</h2>
+                        </div>
+                    </div>
+
+                    <div class="card stat-card">
+                        <div class="stat-icon-wrapper purple-light">
+                            <i data-lucide="cpu" class="stat-icon text-purple"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">AI Confidence</span>
+                            <h2 id="aiConfidence" class="stat-value">98%</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Section: Recent Analyses History -->
+            <div class="card analysis-card history-card" id="history">
+                <div class="card-header-clean">
+                    <i data-lucide="history" class="card-icon text-indigo"></i>
+                    <h2>Recent Analyses</h2>
+                </div>
+                <div class="card-body">
+                    <div id="historyList" class="history-list">
+                        <p class="empty-text">No previous analyses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid Layout for Detailed Analysis Results -->
+            <div class="bottom-section">
+                <!-- Pain Points Card -->
+                <div class="card analysis-card pain-points-card" id="painPoints">
+                    <div class="card-header-clean">
+                        <i data-lucide="alert-triangle" class="card-icon text-red"></i>
+                        <h2>Top Pain Points</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="loading-placeholder">Waiting for AI analysis...</p>
+                    </div>
+                </div>
+
+                <!-- Theme Analysis Card -->
+                <div class="card analysis-card themes-card" id="themes">
+                    <div class="card-header-clean">
+                        <i data-lucide="folder-search" class="card-icon text-indigo"></i>
+                        <h2>Theme Analysis</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="loading-placeholder">Waiting for AI analysis...</p>
+                    </div>
+                </div>
+
+                <!-- Sentiment Box Card -->
+                <div class="card analysis-card sentiment-details-card" id="sentiment">
+                    <div class="card-header-clean">
+                        <i data-lucide="smile" class="card-icon text-green"></i>
+                        <h2>Sentiment breakdown</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="loading-placeholder">Waiting for AI analysis...</p>
+                    </div>
+                </div>
+
+                <!-- Feature Recommendations Card -->
+                <div class="card analysis-card recommendations-card" id="recommendations">
+                    <div class="card-header-clean">
+                        <i data-lucide="lightbulb" class="card-icon text-yellow"></i>
+                        <h2>Feature Recommendations</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="loading-placeholder">Waiting for AI analysis...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <section class="charts">
+                <div class="card chart-card">
+                    <div class="chart-header">
+                        <i data-lucide="pie-chart" class="chart-icon text-blue"></i>
+                        <h2>Sentiment Distribution</h2>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="sentimentChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card chart-card">
+                    <div class="chart-header">
+                        <i data-lucide="bar-chart-2" class="chart-icon text-purple"></i>
+                        <h2>Theme Frequency</h2>
+                    </div>
+                    <div class="chart-content">
+                        <canvas id="themeChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Brief Full Width Card -->
+            <div class="card analysis-card product-brief-card" id="brief">
+                <div class="card-header-clean">
+                    <i data-lucide="file-text" class="card-icon text-indigo"></i>
+                    <h2>Product Brief</h2>
+                </div>
+                <div class="card-body">
+                    <p class="loading-placeholder">Waiting for AI analysis...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Built with ❤️ using HTML • CSS • JavaScript • FastAPI • Gemini AI</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loader-card">
+            <div class="spinner-container">
+                <div class="spinner-glow"></div>
+                <div class="spinner"></div>
+            </div>
+            <h2>Analyzing Reviews...</h2>
+            <div class="loader-messages">
+                <p><i data-lucide="check-circle-2" class="msg-check"></i> Finding themes...</p>
+                <p><i data-lucide="check-circle-2" class="msg-check"></i> Detecting pain points...</p>
+                <p><i data-lucide="check-circle-2" class="msg-check"></i> Generating recommendations...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
+
 </html>
