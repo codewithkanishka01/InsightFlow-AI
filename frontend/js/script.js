@@ -69,15 +69,18 @@ analyzeBtn.addEventListener("click", async () => {
     }, 1200);
 
     try {
-        const response = await fetch("https://insightflow-ai-fhst.onrender.com/analyze", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                reviews: reviews
-            })
-        });
+        const response = await fetch(
+  "https://insightflow-ai-fhst.onrender.com/analyze",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      reviews: reviews
+    })
+  }
+);
 
         const data = await response.json();
         console.log(data);
